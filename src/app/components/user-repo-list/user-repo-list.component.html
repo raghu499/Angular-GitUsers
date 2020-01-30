@@ -1,0 +1,74 @@
+<ng-template [ngIf]="loading" [ngIfElse]="data">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>
+
+<mat-card fxFlex="50" style="top: 100%;left: 25%" fxLayoutAlign="center center" *ngIf="isUserNotFind" fxLayout="column">
+    <div class="banner"></div>
+    <div style="font-size: 20px;" fxLayoutGap="50px" fxLayout="column" fxLayoutAlign="center center">
+        <span>The User <b>{{user}}</b> you are trying to search is not find. Please enter valid user name.</span>
+        <span>Thank you.</span>
+    </div>
+    <a routerLink="/">go to home</a>
+</mat-card>
+
+<ng-template #data>
+    <ng-container *ngIf="userData !== null">
+        <mat-card fxLayout="column" fxLayoutGap="20px">
+            <div fxLayout="row" fxLayoutGap="20px">
+                <div fxLayout="column" fxLayoutGap="10px">
+                    <img height="150px" [src]="userData.avatar_url">
+                    <div fxLayoutAlign="center" class="banners" style="background-color: #4287f5;">{{userData.name}}
+                    </div>
+                </div>
+                <div fxLayout="column" fxLayoutGap="20px">
+                    <div fxLayout="row" fxLayoutGap="15px">
+                        <span fxLayoutAlign="center" class="banners" style="background-color: #83E7D0;">Public
+                            Repositories
+                            :{{userData.public_repos}}</span>
+                        <span fxLayoutAlign="center" class="banners" style="background-color: #4287f5;">Public Gists
+                            :{{userData.public_gists}}</span>
+                        <span fxLayoutAlign="center" class="banners" style="background-color: #44c4f2;">Followers
+                            :{{userData.followers}}</span>
+                        <span fxLayoutAlign="center" class="banners" style="background-color: #6AC15E ;">Following
+                            :{{userData.following}}</span>
+                    </div>
+                    <table>
+                        <tr>
+                            <td><b>Company</b></td>
+                            <td>{{userData.company ? userData.company : 'N/A'}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>WebSite/Blog</b></td>
+                            <td><a [href]="userData.blog">{{userData.blog ? userData.blog : 'N/A'}}</a></td>
+                        </tr>
+                        <tr>
+                            <td><b>Location</b></td>
+                            <td>{{userData.location ? userData.location : 'N/A'}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Created Date</b></td>
+                            <td>{{userData.created_at ? userData.created_at: 'N/A'}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Updated Date Date</b></td>
+                            <td>{{userData.updated_at? userData.updated_at: 'N/A'}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <ngx-datatable class="material" [rows]="repoList" [columns]="columns" [columnMode]="'force'"
+                [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10">
+                <ngx-datatable-column name="Name" prop="name"></ngx-datatable-column>
+                <ngx-datatable-column name="Description" prop="description"></ngx-datatable-column>
+                <ngx-datatable-column name="Link" prop="html_url">
+                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                        <span fxLayout="row">
+                            <a style="cursor: pointer;" (click)="openLink(value)">{{value}} <mat-icon
+                                    aria-hidden="false" aria-label="Example home icon">open_in_new</mat-icon></a>
+                        </span>
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+        </mat-card>
+    </ng-container>
+</ng-template>

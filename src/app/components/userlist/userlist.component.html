@@ -1,0 +1,27 @@
+<ng-template [ngIf]="loading" [ngIfElse]="data">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>
+<ng-template #data>
+    <div class="filter" fxLayout="column" fxLayoutGap="1px">
+        <div fxLayoutGap="20px">
+            <span>Filter Users</span>
+            <input type="text" [formControl]="userFilter">
+        </div>
+        <p><b>Note: </b>You can filter the user by their name.</p>
+    </div>
+
+    <div fxLayout="row wrap">
+        <div style="padding:10px" *ngFor="let user of users">
+            <mat-card style="cursor: pointer;" (click)="userDetials(user.login)" fxLayoutGap="5px" fxLayout="row">
+                <div fxLayout="column">
+                    <img height="150px" [src]="user.avatar_url">
+                    <b fxLayoutAlign="center">Name: {{user.login}}</b>
+                </div>
+                <div>
+
+
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</ng-template>
