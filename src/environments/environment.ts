@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  GITHUB_API: 'https://api.github.com'
+  testData: 'assets/test_analysis.json'
 };
 
 /*

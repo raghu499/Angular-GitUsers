@@ -13,6 +13,8 @@ import { UserRepoListComponent } from './components/user-repo-list/user-repo-lis
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { TableDataComponent } from './components/table-data/table-data.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +22,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     FooterComponent,
     UserlistComponent,
     UserRepoListComponent,
-    
+    TableDataComponent,    
   ],
   imports: [
     BrowserModule,

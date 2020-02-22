@@ -9,8 +9,8 @@ export class ApiService {
 
   constructor(public http: HttpClient) { }
 
-  getData(route) {
-    const url = `${environment.GITHUB_API}/${route}`;
+  getData() {
+    const url = `${environment.testData}`;
     return this.http.get(url).toPromise();
   }
 }
