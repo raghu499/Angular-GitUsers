@@ -50,17 +50,30 @@ export class UserRepoListComponent implements OnInit {
 
   }
 
-  applyFiters(value) {
+  applyFiters(value, num) {
     console.log(value);
-    const val = value.toLowerCase();
-     this.repoList = this.tempList.filter(index => {
-      return (index.upc.toLowerCase().indexOf(val) !== -1 ||
-        index.productShortName.toLowerCase().indexOf(val) !== -1 ||
-        index.brandName.toLowerCase().indexOf(val) !== -1 ||
-        index.shelfLevel.toLowerCase().indexOf(val) !== -1 ||
-        !val);
-    });
-    this.repoList.offset = 0;
+    // if(num  == 1 ){
+      const val = value.toLowerCase();
+      this.repoList = this.tempList.filter(index => {
+       return (index.upc.toLowerCase().indexOf(val) !== -1 ||
+         index.productShortName.toLowerCase().indexOf(val) !== -1 ||
+         index.brandName.toLowerCase().indexOf(val) !== -1 ||
+         index.shelfLevel.toLowerCase().indexOf(val) !== -1 ||
+         !val);
+     });
+     this.repoList.offset = 0;
+    // }else if(num == 2){
+    //   const val = value.toLowerCase();
+    //   this.repoList = this.repoList.filter(index => {
+    //    return (index.upc.toLowerCase().indexOf(val) !== -1 ||
+    //      index.productShortName.toLowerCase().indexOf(val) !== -1 ||
+    //      index.brandName.toLowerCase().indexOf(val) !== -1 ||
+    //      index.shelfLevel.toLowerCase().indexOf(val) !== -1 ||
+    //      !val);
+    //  });
+    //  this.repoList.offset = 0;
+    // }
+   
   }
 
 }

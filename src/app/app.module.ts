@@ -14,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { TableDataComponent } from './components/table-data/table-data.component';
+import { GraphDataComponent } from './components/graph-data/graph-data.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { TableDataComponent } from './components/table-data/table-data.component
     FooterComponent,
     UserlistComponent,
     UserRepoListComponent,
-    TableDataComponent,    
+    TableDataComponent,
+    GraphDataComponent,    
   ],
   imports: [
     BrowserModule,
@@ -38,6 +41,7 @@ import { TableDataComponent } from './components/table-data/table-data.component
     MatProgressSpinnerModule,
     FormsModule, ReactiveFormsModule,
     NgxDatatableModule,
+    ChartsModule
     
   ],
   providers: [ ],

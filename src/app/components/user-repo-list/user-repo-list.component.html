@@ -11,7 +11,7 @@
                         <div>
                             <div class="headName">UPC</div>
                             <div>
-                                <input type="text" placeholder="" name="upc" (input)="applyFiters($event.target.value)"/>
+                                <input type="text" placeholder="" name="upc" (input)="applyFiters($event.target.value, '1')"/>
                             </div>
                         </div>
                      </ng-template>
@@ -21,7 +21,7 @@
                         <div>
                             <div class="headName">Product Short Name</div>
                             <div>
-                                <input type="text" placeholder="" name="productShortName" (input)="applyFiters($event.target.value)"/>
+                                <input type="text" placeholder="" name="productShortName" (input)="applyFiters($event.target.value, '2')"/>
                             </div>
                         </div>
                      </ng-template>
@@ -31,7 +31,7 @@
                         <div>
                             <div class="headName">No of Facings</div>
                             <div>
-                                <input type="text" placeholder="" name="facing" (input)="applyFiters($event.target.value)"/>
+                                <input type="text" placeholder="" name="facing" (input)="applyFiters($event.target.value, '3')"/>
                             </div>
                         </div>
                      </ng-template>
@@ -41,7 +41,7 @@
                         <div >
                             <div class="headName">Brand</div>
                             <div>
-                                <input type="text" placeholder="" name="brandName" (input)="applyFiters($event.target.value)"/>
+                                <input type="text" placeholder="" name="brandName" (input)="applyFiters($event.target.value, '4')"/>
                             </div>
                         </div>
                      </ng-template>
@@ -51,7 +51,7 @@
                         <div>
                             <div class="headName">Shelf Level</div>
                             <div>
-                                <input type="text" placeholder="" name="shelfLevel" (input)="applyFiters($event.target.value)"/>
+                                <input type="text" placeholder="" name="shelfLevel" (input)="applyFiters($event.target.value, '5')"/>
                             </div>
                         </div>
                      </ng-template>
