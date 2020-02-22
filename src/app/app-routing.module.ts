@@ -7,7 +7,7 @@ import { TableDataComponent } from './components/table-data/table-data.component
 const routes: Routes = [
   {
     path: '',
-    component: UserlistComponent
+    component: UserRepoListComponent
   },
   {
     path: 'repos/:name',

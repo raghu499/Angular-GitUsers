@@ -4,23 +4,58 @@
 <ng-template #data>
     <ng-container *ngIf="userData !== null">
         <mat-card fxLayout="column" fxLayoutGap="20px">
-                <input type="text" (keyup)='filterDatatable($event)'>
             <ngx-datatable class="material" [rows]="repoList" [columns]="columns" [columnMode]="'force'"
-                [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10">
-                <ngx-datatable-column name="UPC" prop="upc"></ngx-datatable-column>
-                <ngx-datatable-column name="Product Short Name" prop="productShortName"></ngx-datatable-column>
-                <ngx-datatable-column name="No of Facings" prop="facing"></ngx-datatable-column>
-                <ngx-datatable-column name="Brand" prop="brandName"></ngx-datatable-column>
-                <ngx-datatable-column name="Shelf Level" prop="shelfLevel"></ngx-datatable-column>
-<!-- 
-                <ngx-datatable-column name="UPC" prop="upc">
-                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                        <span fxLayout="row">
-                            <a style="cursor: pointer;" (click)="openLink(value)">{{value}} <mat-icon
-                                    aria-hidden="false" aria-label="Example home icon">open_in_new</mat-icon></a>
-                        </span>
-                    </ng-template>
-                </ngx-datatable-column> -->
+                [headerHeight]="70" [footerHeight]="50" rowHeight="auto" [limit]="10" >
+                <ngx-datatable-column name="UPC" prop="upc" [sortable]="true">
+                    <ng-template ngx-datatable-header-template>
+                        <div>
+                            <div class="headName">UPC</div>
+                            <div>
+                                <input type="text" placeholder="" name="upc" (input)="applyFiters()"/>
+                            </div>
+                        </div>
+                     </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Product Short Name" prop="productShortName">
+                    <ng-template  ngx-datatable-header-template>
+                        <div>
+                            <div class="headName">Product Short Name</div>
+                            <div>
+                                <input type="text" placeholder="" name="productShortName" (input)="applyFiters()"/>
+                            </div>
+                        </div>
+                     </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="No of Facings" prop="facing">
+                    <ng-template  ngx-datatable-header-template>
+                        <div>
+                            <div class="headName">No of Facings</div>
+                            <div>
+                                <input type="text" placeholder="" name="facing" (input)="applyFiters()"/>
+                            </div>
+                        </div>
+                     </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Brand" prop="brandName">
+                    <ng-template  ngx-datatable-header-template>
+                        <div >
+                            <div class="headName">Brand</div>
+                            <div>
+                                <input type="text" placeholder="" name="brandName" (input)="applyFiters()"/>
+                            </div>
+                        </div>
+                     </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Shelf Level" prop="shelfLevel">
+                    <ng-template  ngx-datatable-header-template>
+                        <div>
+                            <div class="headName">Shelf Level</div>
+                            <div>
+                                <input type="text" placeholder="" name="shelfLevel" (input)="applyFiters()"/>
+                            </div>
+                        </div>
+                     </ng-template>
+                </ngx-datatable-column>
                 
             </ngx-datatable>
         </mat-card>

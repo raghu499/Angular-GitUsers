@@ -25,7 +25,7 @@ export class UserlistComponent implements OnInit {
       }
     })
     this.loading = true;
-    this.apiService.getData('users').then(res => {
+    this.apiService.getData().then(res => {
       if (res) {
         console.log(res)
         this.users = res;
