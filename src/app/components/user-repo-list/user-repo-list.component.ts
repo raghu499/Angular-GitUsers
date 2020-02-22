@@ -14,40 +14,55 @@ export class UserRepoListComponent implements OnInit {
   testObject = {};
   // finalData = {"upc":'', "productShortName": '', "facing": 0 , "brandName":'', "shelfLevel": ''};
   count = 0;
-  constructor( public apiService: ApiService) { }
+  tempList: any;
+  constructor(public apiService: ApiService) { }
 
   ngOnInit() {
     this.loading = true;
     this.repoList = [];
-        this.apiService.getData().then((result: any) => {
-          if (result) {
-            this.repoList = result.ResultSet.row;
-            this.repoList.map((item) => {
-              // this.count = 0;
-              // item['id']= 25;
-              // this.userData.push(item)
-              var itemPropertyName = item["upc"]; 
-              if (itemPropertyName in this.testObject) {
-                this.testObject[itemPropertyName].duplicate = true;
-                item['facing'] =this.count++;
-              }
-              else {
-                this.testObject[itemPropertyName] = item;
-                item['facing'] = 0;
-              }
-              
-            });
-            console.log(this.userData);
-            console.log(this.count);
-
-            this.loading = false;
-          } else {
-            this.loading = true;
+    this.apiService.getData().then((result: any) => {
+      if (result) {
+        this.tempList = result.ResultSet.row;
+        this.repoList = result.ResultSet.row;
+        this.repoList.map((item) => {
+        
+          var itemPropertyName = item["upc"];
+          if (itemPropertyName in this.testObject) {
+            this.testObject[itemPropertyName].duplicate = true;
+            item['facing'] = this.count++;
           }
-        }).catch(error => {
-          this.loading = false;
-        })
-       
+          else {
+            this.testObject[itemPropertyName] = item;
+            item['facing'] = 0;
+          }
+
+        });
+        console.log(this.userData);
+        console.log(this.count);
+
+        this.loading = false;
+      } else {
+        this.loading = true;
       }
- 
+    }).catch(error => {
+      this.loading = false;
+    })
+
+  }
+
+  applyFiters(value) {
+    console.log(value);
+    const val = value.toLowerCase();
+     this.repoList = this.tempList.filter(index => {
+      return (index.upc.toLowerCase().indexOf(val) !== -1 ||
+        index.productShortName.toLowerCase().indexOf(val) !== -1 ||
+        index.brandName.toLowerCase().indexOf(val) !== -1 ||
+        index.shelfLevel.toLowerCase().indexOf(val) !== -1 ||
+        !val);
+    });
+    this.repoList.offset = 0;
+  }
+
 }
+
+
