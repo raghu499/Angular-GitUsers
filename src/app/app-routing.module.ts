@@ -8,7 +8,7 @@ import { GraphDataComponent } from './components/graph-data/graph-data.component
 const routes: Routes = [
   {
     path: '',
-    component: GraphDataComponent
+    component: UserRepoListComponent
   },
   {
     path: 'repos/:name',

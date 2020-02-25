@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
+import { FormGroup, FormControl } from '@angular/forms';
 @Component({
   selector: 'app-user-repo-list',
   templateUrl: './user-repo-list.component.html',
@@ -16,6 +17,14 @@ export class UserRepoListComponent implements OnInit {
   count = 0;
   tempList: any;
   constructor(public apiService: ApiService) { }
+  filterGroup = new FormGroup({
+    upc: new FormControl(),
+    productShortName: new FormControl(''),
+    facing: new FormControl(),
+    brandName: new FormControl(''),
+    shelfLevel: new FormControl(''),
+}); 
+
 
   ngOnInit() {
     this.loading = true;
@@ -25,20 +34,22 @@ export class UserRepoListComponent implements OnInit {
         this.tempList = result.ResultSet.row;
         this.repoList = result.ResultSet.row;
         this.repoList.map((item) => {
-        
-          var itemPropertyName = item["upc"];
+          // if(!item['facing'])
+        item['facing'] = 0;
+         let itemPropertyName = item["upc"];
           if (itemPropertyName in this.testObject) {
-            this.testObject[itemPropertyName].duplicate = true;
-            item['facing'] = this.count++;
+            if(this.testObject[itemPropertyName].duplicate =  true)
+            item['facing']+=1
           }
           else {
             this.testObject[itemPropertyName] = item;
-            item['facing'] = 0;
           }
 
         });
         console.log(this.userData);
         console.log(this.count);
+
+
 
         this.loading = false;
       } else {
@@ -52,7 +63,6 @@ export class UserRepoListComponent implements OnInit {
 
   applyFiters(value, num) {
     console.log(value);
-    // if(num  == 1 ){
       const val = value.toLowerCase();
       this.repoList = this.tempList.filter(index => {
        return (index.upc.toLowerCase().indexOf(val) !== -1 ||
@@ -62,17 +72,7 @@ export class UserRepoListComponent implements OnInit {
          !val);
      });
      this.repoList.offset = 0;
-    // }else if(num == 2){
-    //   const val = value.toLowerCase();
-    //   this.repoList = this.repoList.filter(index => {
-    //    return (index.upc.toLowerCase().indexOf(val) !== -1 ||
-    //      index.productShortName.toLowerCase().indexOf(val) !== -1 ||
-    //      index.brandName.toLowerCase().indexOf(val) !== -1 ||
-    //      index.shelfLevel.toLowerCase().indexOf(val) !== -1 ||
-    //      !val);
-    //  });
-    //  this.repoList.offset = 0;
-    // }
+   
    
   }
 
