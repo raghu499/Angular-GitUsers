@@ -18,9 +18,9 @@ export class UserRepoListComponent implements OnInit {
   tempList: any;
   constructor(public apiService: ApiService) { }
   filterGroup = new FormGroup({
-    upc: new FormControl(),
+    upc: new FormControl(''),
     productShortName: new FormControl(''),
-    facing: new FormControl(),
+    facing: new FormControl(''),
     brandName: new FormControl(''),
     shelfLevel: new FormControl(''),
 }); 
@@ -46,36 +46,73 @@ export class UserRepoListComponent implements OnInit {
           }
 
         });
-        console.log(this.userData);
-        console.log(this.count);
-
-
-
         this.loading = false;
       } else {
         this.loading = true;
       }
+      this.tempList = [...this.repoList ]
     }).catch(error => {
       this.loading = false;
     })
 
   }
 
-  applyFiters(value, num) {
-    console.log(value);
-      const val = value.toLowerCase();
-      this.repoList = this.tempList.filter(index => {
-       return (index.upc.toLowerCase().indexOf(val) !== -1 ||
-         index.productShortName.toLowerCase().indexOf(val) !== -1 ||
-         index.brandName.toLowerCase().indexOf(val) !== -1 ||
-         index.shelfLevel.toLowerCase().indexOf(val) !== -1 ||
-         !val);
-     });
-     this.repoList.offset = 0;
+  applyFiters() {
+    const filters= this.filterGroup.value;
+    this.repoList = [];
+    this.tempList.forEach( item =>{
+      let include = true;
+      Object.keys(filters).forEach(key =>{
+        if(filters[key] && filters[key].length > 0 ){
+          if(!item[key]){
+            include = false;
+          }else if(typeof item[key]  === 'string'){
+            if(!item[key].toLowerCase().includes(filters[key].toLowerCase())){
+              include = false;
+            }
+          }
+        } 
+      })
+
+      if(include){
+        this.repoList.push(item);
+      }
+
+    })
+
+
+    // console.log(filters);
+
+
+    //   const val = value.toLowerCase();
+    //   this.repoList = this.tempList.filter(index => {
+    //    return (index.upc.toLowerCase().indexOf(val) !== -1 ||
+    //      index.productShortName.toLowerCase().indexOf(val) !== -1 ||
+    //      index.brandName.toLowerCase().indexOf(val) !== -1 ||
+    //      index.shelfLevel.toLowerCase().indexOf(val) !== -1 ||
+    //      !val);
+    //  });
+    //  this.repoList.offset = 0;
    
    
   }
 
+
+
+  // applyFiters(value, num) {
+  //   console.log(value);
+  //     const val = value.toLowerCase();
+  //     this.repoList = this.tempList.filter(index => {
+  //      return (index.upc.toLowerCase().indexOf(val) !== -1 ||
+  //        index.productShortName.toLowerCase().indexOf(val) !== -1 ||
+  //        index.brandName.toLowerCase().indexOf(val) !== -1 ||
+  //        index.shelfLevel.toLowerCase().indexOf(val) !== -1 ||
+  //        !val);
+  //    });
+  //    this.repoList.offset = 0;
+   
+   
+  // }
 }
 
 
