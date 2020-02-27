@@ -15,6 +15,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { TableDataComponent } from './components/table-data/table-data.component';
 import { GraphDataComponent } from './components/graph-data/graph-data.component';
 import { ChartsModule } from 'ng2-charts';
+import { ColorHDirective } from './color-h.directive';
+import { TextPipe } from './text.pipe';
 
 @NgModule({
   declarations: [
@@ -24,13 +26,16 @@ import { ChartsModule } from 'ng2-charts';
     UserlistComponent,
     UserRepoListComponent,
     TableDataComponent,
-    GraphDataComponent,    
+    GraphDataComponent,
+    ColorHDirective,
+    TextPipe,    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
+    ReactiveFormsModule,
     MatIconModule,
     MatCardModule,
     HttpClientModule,
@@ -38,7 +43,7 @@ import { ChartsModule } from 'ng2-charts';
     MatFormFieldModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
-    FormsModule, ReactiveFormsModule,
+    FormsModule,
     NgxDatatableModule,
     ChartsModule
     

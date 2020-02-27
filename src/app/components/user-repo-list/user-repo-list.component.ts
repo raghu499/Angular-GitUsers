@@ -16,6 +16,12 @@ export class UserRepoListComponent implements OnInit {
   // finalData = {"upc":'', "productShortName": '', "facing": 0 , "brandName":'', "shelfLevel": ''};
   count = 0;
   tempList: any;
+  testingData = [    
+    {"name":"Ram", "email":"ram@gmail.com", "age":23},    
+    {"name":"Shyam", "email":"shyam23@gmail.com", "age":28},  
+    {"name":"John", "email":"john@gmail.com", "age":33},    
+    {"name":"Bob", "email":"bob32@gmail.com", "age":41}   
+];
   constructor(public apiService: ApiService) { }
   filterGroup = new FormGroup({
     upc: new FormControl(''),
@@ -82,8 +88,6 @@ export class UserRepoListComponent implements OnInit {
 
 
     // console.log(filters);
-
-
     //   const val = value.toLowerCase();
     //   this.repoList = this.tempList.filter(index => {
     //    return (index.upc.toLowerCase().indexOf(val) !== -1 ||
@@ -93,11 +97,7 @@ export class UserRepoListComponent implements OnInit {
     //      !val);
     //  });
     //  this.repoList.offset = 0;
-   
-   
   }
-
-
 
   // applyFiters(value, num) {
   //   console.log(value);
